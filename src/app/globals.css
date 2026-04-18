@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
+@source "../**/*.{js,jsx,ts,tsx}";
+
 :root {
-  --background: #0a0a0a;
+  --background: #07070a;
   --foreground: #ededed;
+  --surface: #0f1117;
+  --surface-2: #13161f;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --muted: rgba(255, 255, 255, 0.5);
+  --accent: #a78bfa;
 }
 
 * {
@@ -11,9 +19,106 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+::selection {
+  background: rgba(167, 139, 250, 0.3);
+  color: #fff;
+}
+
+/* Utility classes */
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.container-x {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container-x { padding-inline: 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .container-x { padding-inline: 2rem; }
+}
+
+.section {
+  padding-block: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section { padding-block: 7rem; }
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.mask-radial {
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, #000 55%, transparent 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #c4b5fd 0%, #f0abfc 50%, #fda4af 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.glow-violet {
+  box-shadow:
+    0 0 0 1px rgba(167, 139, 250, 0.2),
+    0 12px 40px -12px rgba(139, 92, 246, 0.45);
+}
+
+.shadow-ring {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 12px 40px -16px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rise-in {
+  animation: rise 0.6s ease-out both;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
 }
